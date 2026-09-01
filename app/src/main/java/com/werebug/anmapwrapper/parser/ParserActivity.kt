@@ -1,22 +1,19 @@
 package com.werebug.anmapwrapper.parser
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.werebug.anmapwrapper.MainActivity
 import com.werebug.anmapwrapper.R
 import com.werebug.anmapwrapper.databinding.ActivityParserBinding
-import java.io.File
-import java.io.FileInputStream
-import java.io.IOException
 
 class ParserActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityParserBinding
+  private val viewModel: ParserViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -25,27 +22,20 @@ class ParserActivity : AppCompatActivity() {
 
     binding.hostListRecyclerView.layoutManager = LinearLayoutManager(this)
 
-    val hosts = try {
-      FileInputStream(File(filesDir, MainActivity.XML_OUTPUT_FILE)).use {
-        XMLOutputParser().parse(it)
-      }
-    } catch (e: IOException) {
-      // The output is deleted on Clear and is absent altogether when the scan ran
-      // without -oX, so a stale back-stack entry can land here with no file.
-      Log.e(MainActivity.LOG_TAG, "Cannot read the XML scan output.", e)
-      showMessage(R.string.parser_output_unavailable)
-      null
-    } catch (e: XmlOutputParseException) {
-      Log.e(MainActivity.LOG_TAG, "Cannot parse the XML scan output.", e)
-      showMessage(R.string.parser_parse_failed)
-      null
-    }
+    viewModel.parseResult.observe(this) { result ->
+      binding.parserProgressBar.visibility = View.GONE
+      when (result) {
+        is ParserViewModel.ParseResult.Parsed ->
+          if (result.hosts.isEmpty()) {
+            showMessage(R.string.parser_no_hosts)
+          } else {
+            binding.hostListRecyclerView.adapter = HostAdapter(result.hosts)
+          }
 
-    if (hosts != null) {
-      if (hosts.isEmpty()) {
-        showMessage(R.string.parser_no_hosts)
-      } else {
-        binding.hostListRecyclerView.adapter = HostAdapter(hosts)
+        ParserViewModel.ParseResult.OutputUnavailable ->
+          showMessage(R.string.parser_output_unavailable)
+
+        ParserViewModel.ParseResult.ParseFailed -> showMessage(R.string.parser_parse_failed)
       }
     }
 
