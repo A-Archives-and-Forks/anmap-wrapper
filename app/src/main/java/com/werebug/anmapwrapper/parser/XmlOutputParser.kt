@@ -18,7 +18,7 @@ class XMLOutputParser {
     var services = mutableListOf<Service>()
 
     fun parsePortTag(parser: XmlPullParser) {
-      val portId = parser.getAttributeValue(null, "portid")?.toInt()
+      val portId = parser.getAttributeValue(null, "portid")?.toIntOrNull()
       var portState = ""
       var serviceName = ""
       var serviceProduct = ""
