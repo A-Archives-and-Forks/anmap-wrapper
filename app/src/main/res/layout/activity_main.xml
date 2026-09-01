@@ -16,7 +16,7 @@
         android:layout_marginHorizontal="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/parse_output_button"
-        app:layout_constraintBottom_toTopOf="@id/scan_control_button"
+        app:layout_constraintBottom_toTopOf="@id/nmap_command_input"
         app:layout_constraintHorizontal_weight="1" />
 
     <Button
@@ -27,7 +27,7 @@
         android:visibility="gone"
         android:layout_marginHorizontal="16dp"
         app:layout_constraintStart_toEndOf="@id/clear_output_button"
-        app:layout_constraintBottom_toTopOf="@id/scan_control_button"
+        app:layout_constraintBottom_toTopOf="@id/nmap_command_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1" />
 
@@ -43,8 +43,11 @@
         android:id="@+id/nmap_command_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textNoSuggestions"
+        android:gravity="top|start"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:imeOptions="actionDone"
+        android:maxLines="6"
+        android:scrollbars="vertical"
         android:hint="@string/nmap_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scan_control_button"
