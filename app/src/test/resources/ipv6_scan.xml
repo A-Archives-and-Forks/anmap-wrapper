@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun scanner="nmap" args="nmap -6 -p 80,443 scanme.nmap.org" start="1750000300" version="7.98" xmloutputversion="1.05">
+<hosthint><status state="up" reason="user-set" reason_ttl="0"/><address addr="2600:3c01::f03c:91ff:fe18:bb2f" addrtype="ipv6"/><hostnames><hostname name="scanme.nmap.org" type="user"/></hostnames></hosthint>
+<host starttime="1750000301" endtime="1750000310">
+<status state="up" reason="syn-ack" reason_ttl="51"/>
+<address addr="2600:3c01::f03c:91ff:fe18:bb2f" addrtype="ipv6"/>
+<hostnames>
+<hostname name="scanme.nmap.org" type="user"/>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="51"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="51"/><service name="https" method="table" conf="3"/></port>
+</ports>
+</host>
+<runstats><finished time="1750000311" elapsed="10.11" exit="success"/><hosts up="1" down="0" total="1"/></runstats>
+</nmaprun>

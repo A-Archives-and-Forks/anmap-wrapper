@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun scanner="nmap" args="nmap -sn 192.168.1.0/24" start="1750000200" version="7.98" xmloutputversion="1.05">
+<host starttime="1750000201" endtime="1750000203">
+<status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.1" addrtype="ipv4"/>
+<address addr="AA:BB:CC:DD:EE:01" addrtype="mac" vendor="AVM Audiovisuelles Marketing und Computersysteme"/>
+<hostnames>
+<hostname name="fritz.box" type="PTR"/>
+</hostnames>
+</host>
+<host starttime="1750000201" endtime="1750000203">
+<status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.42" addrtype="ipv4"/>
+<address addr="AA:BB:CC:DD:EE:42" addrtype="mac" vendor="Raspberry Pi Trading Ltd"/>
+<hostnames>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+</ports>
+</host>
+<runstats><finished time="1750000204" elapsed="3.40" exit="success"/><hosts up="2" down="0" total="2"/></runstats>
+</nmaprun>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun scanner="nmap" args="nmap -sV 192.168.1.0/24" start="1750000400" version="7.98" xmloutputversion="1.05">
+<host starttime="1750000401" endtime="1750000405">
+<status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.1" addrtype="ipv4"/>
+<hostnames>
+<hostname name="fritz.box" type="PTR"/>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="lighttpd" version="1.4.59" method="probed" conf="10"/></port>
+</ports>
+</host>
+<host starttime="1750000406" endtime="1750000409">
+<status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.42" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack
